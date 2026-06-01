@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: nss-kiit-backend
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./backend/.env
+    environment:
+      # Override the DB URI to use the dockerized mongo container instead of localhost
+      - MONGO_URI=mongodb://mongo:27017/nss-kiit
+    # Syncs local code changes without needing to rebuild (thanks to node_modules exclusion in volumes)
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    depends_on:
+      - mongo
+    # You can change the command to `npm run dev` to use nodemon when mapped via volumes
+    command: npm run dev
+
+  mongo:
+    image: mongo:6
+    container_name: nss-kiit-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:
