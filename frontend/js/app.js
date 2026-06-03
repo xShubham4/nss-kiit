@@ -49,19 +49,66 @@ function initSmoothScroll() {
   });
 }
 
-// ── Staggered Text Reveal ──────────────────────────────────────
-function initTextReveal() {
-  // The hero text elements have CSS animations with delays.
-  // This ensures they only play once the scene starts loading.
-  const heroTitle = document.querySelector('.hero-title');
-  const heroQuotes = document.querySelector('.hero-quotes');
+// ── Scroll Reveal ──────────────────────────────────────────────
+function initScrollReveal() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+      }
+    });
+  }, { threshold: 0.15 });
 
-  if (heroTitle) {
-    heroTitle.style.animationPlayState = 'running';
-  }
-  if (heroQuotes) {
-    heroQuotes.style.animationPlayState = 'running';
-  }
+  document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+    observer.observe(el);
+  });
+}
+
+// ── Mentor Gallery ─────────────────────────────────────────────
+function initMentorGallery() {
+  const images = document.querySelectorAll('.mentor-img');
+  if (images.length === 0) return;
+  
+  let currentIndex = 0;
+  setInterval(() => {
+    // Remove active from current
+    images[currentIndex].classList.remove('active');
+    
+    // Move to next
+    currentIndex = (currentIndex + 1) % images.length;
+    
+    // Add active to next
+    images[currentIndex].classList.add('active');
+  }, 3000); // 3 seconds toggle
+}
+
+// ── Navbar Scroll Hide ──────────────────────────────────────────
+function initNavbarScroll() {
+  const navbar = document.querySelector('.navbar');
+  if (!navbar) return;
+  
+  let lastScroll = 0;
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.scrollY;
+    
+    // Always show at top
+    if (currentScroll <= 0) {
+      navbar.classList.remove('navbar--hidden');
+      lastScroll = currentScroll;
+      return;
+    }
+    
+    // Scroll down -> hide
+    if (currentScroll > lastScroll && currentScroll > 100) {
+      navbar.classList.add('navbar--hidden');
+    } 
+    // Scroll up -> show
+    else if (currentScroll < lastScroll) {
+      navbar.classList.remove('navbar--hidden');
+    }
+    
+    lastScroll = currentScroll;
+  });
 }
 
 // ── Nav Active Link ────────────────────────────────────────────
@@ -89,9 +136,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileNav();
   initSmoothScroll();
   initActiveLink();
+  initNavbarScroll();
 
-  // Init text animations
-  initTextReveal();
+  // Init text animations & mentors
+  initScrollReveal();
+  initMentorGallery();
 
   console.log('[NSS-KIIT] App initialized');
 });
