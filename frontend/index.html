@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NSS KIIT — National Service Scheme</title>
+  <meta name="description" content="NSS KIIT — National Service Scheme at KIIT University. Serving communities through volunteer action, social service, and nation building." />
+  <meta name="keywords" content="NSS, KIIT, National Service Scheme, volunteer, social service" />
+
+  <!-- Favicon (inline SVG data) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✱</text></svg>" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       PRELOADER — ExoApe-inspired black loading screen
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="preloader" id="preloader" role="status" aria-label="Loading">
+    <div class="preloader-title" id="preloader-title" data-text="NSS KIIT">
+      NSS KIIT
+    </div>
+    <div class="preloader-subtitle">
+      <span class="preloader-subtitle-inner">National Service Scheme</span>
+    </div>
+    <div class="preloader-progress" id="preloader-progress">0</div>
+    <div class="preloader-bar">
+      <div class="preloader-bar-fill" id="preloader-bar-fill"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SPLINE 3D CANVAS — Full viewport background
+       ═══════════════════════════════════════════════════════════ -->
+  <canvas id="canvas3d" aria-hidden="true"></canvas>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       HERO TEXT OVERLAY — On top of 3D scene
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="hero-overlay" aria-label="Hero section">
+    <h1 class="hero-title">NSS KIIT</h1>
+    <div class="hero-quotes">
+      Live as if you were to die tomorrow.<br />
+      Learn as if you were to live forever.<br />
+      Seven Deadly Sins Wealth without work<br />
+      Pleasure without conscience Science<br />
+      without humanity Knowledge without<br />
+      character Politics without principle<br />
+      Commerce without morality Worship<br />
+      without sacrifice.<br />
+      Earth provides enough to satisfy every<br />
+      man's needs, but not every man's greed."
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       NAVBAR — Augen.pro inspired glassmorphism
+       ═══════════════════════════════════════════════════════════ -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-main">
+      <!-- Logo -->
+      <a href="#" class="nav-logo" id="nav-logo" aria-label="NSS KIIT home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="2" x2="12" y2="22"></line>
+          <line x1="2" y1="12" x2="22" y2="12"></line>
+          <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+          <line x1="19.07" y1="4.93" x2="4.93" y2="19.07"></line>
+        </svg>
+      </a>
+
+      <!-- Nav links pill -->
+      <div class="nav-links" id="nav-links">
+        <a href="#home" id="link-home">Home</a>
+        <a href="#gallery" id="link-gallery">Gallery</a>
+        <a href="#about" id="link-about">About</a>
+        <a href="#contact" id="link-contact">Contact</a>
+      </div>
+
+      <!-- Login button -->
+      <button class="nav-login-btn" id="nav-login-btn" aria-label="Admin Login">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+        Admin Login
+      </button>
+
+      <!-- User info (visible after login) -->
+      <div class="nav-user" id="nav-user">
+        <div>
+          <div class="nav-user-name" id="nav-user-name"></div>
+          <div class="nav-user-role" id="nav-user-role"></div>
+        </div>
+        <button class="nav-logout-btn" id="nav-logout-btn" aria-label="Logout">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+            <polyline points="16 17 21 12 16 7"></polyline>
+            <line x1="21" y1="12" x2="9" y2="12"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile burger -->
+      <button class="nav-burger" id="nav-burger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- Tagline pill -->
+    <div class="nav-tagline">
+      <span>Not Me But You — NSS Motto</span>
+      <span class="tagline-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </span>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       MOBILE NAV OVERLAY
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="mobile-nav" id="mobile-nav" role="dialog" aria-label="Mobile navigation">
+    <a href="#home">Home</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <a href="#" id="mobile-login-btn">Admin Login</a>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       LOGIN MODAL — Glassmorphism card
+       ═══════════════════════════════════════════════════════════ -->
+  <!-- Backdrop -->
+  <div class="modal-backdrop" id="login-backdrop" aria-hidden="true"></div>
+
+  <!-- Modal -->
+  <div class="modal" id="login-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <!-- Close button -->
+    <button class="modal-close" id="modal-close-btn" aria-label="Close login">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <!-- Header -->
+    <div class="modal-header">
+      <div class="modal-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+      </div>
+      <h2 class="modal-title" id="modal-title">Admin Sign In</h2>
+      <p class="modal-subtitle">Access the NSS-KIIT admin dashboard</p>
+    </div>
+
+    <!-- Global message -->
+    <div class="form-message" id="form-message" role="alert"></div>
+
+    <!-- Form -->
+    <form id="login-form" novalidate>
+      <div class="form-group">
+        <label class="form-label" for="login-email">Email</label>
+        <input
+          class="form-input"
+          type="email"
+          id="login-email"
+          name="email"
+          placeholder="admin@kiit.ac.in"
+          autocomplete="email"
+          required
+        />
+        <div class="form-error" id="email-error" role="alert"></div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="login-password">Password</label>
+        <input
+          class="form-input"
+          type="password"
+          id="login-password"
+          name="password"
+          placeholder="Enter your password"
+          autocomplete="current-password"
+          required
+        />
+        <div class="form-error" id="password-error" role="alert"></div>
+      </div>
+
+      <button class="form-submit" type="submit" id="login-submit">
+        <span class="btn-text">Sign In</span>
+        <span class="btn-spinner"></span>
+      </button>
+    </form>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SCRIPTS — ES Modules
+       ═══════════════════════════════════════════════════════════ -->
+  <script type="module" src="js/app.js"></script>
+
+</body>
+</html>
