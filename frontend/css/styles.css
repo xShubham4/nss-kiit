@@ -250,6 +250,17 @@ body.loaded .hero-quotes {
 }
 
 /* ============================================================
+   SPA VIEW UTILITIES
+   ============================================================ */
+.view-hidden {
+  display: none !important;
+}
+
+.view-active {
+  display: block;
+}
+
+/* ============================================================
    SCROLLING CONTENT  —  Layered over fixed Spline background
    ============================================================ */
 .scroller {
