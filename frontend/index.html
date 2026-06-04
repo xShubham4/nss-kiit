@@ -61,8 +61,8 @@
     <!-- Spacer lets the user see the 3D scene at the top -->
     <section class="spacer-100vh"></section>
 
-    <!-- About & Mentors glassmorphism section -->
-    <section class="about-section" id="about">
+    <!-- Home Intro glassmorphism section -->
+    <section class="about-section" id="home-intro">
       <div class="about-container">
         
         <!-- Left: Text -->
@@ -84,6 +84,115 @@
 
       </div>
     </section>
+  </main>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       GALLERY VIEW — SPA section for units grid
+       ═══════════════════════════════════════════════════════════ -->
+  <main class="view-hidden gallery-view" id="gallery-view">
+    <div class="gallery-container">
+      <h2 class="gallery-title">NSS KIIT Units</h2>
+      <div class="gallery-grid" id="gallery-grid">
+        <!-- Cards injected by gallery.js -->
+      </div>
+    </div>
+  </main>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       UNIT DETAIL VIEW — SPA section for events/photos
+       ═══════════════════════════════════════════════════════════ -->
+  <main class="view-hidden unit-detail-view" id="unit-detail-view">
+    <div class="unit-detail-container">
+      <div class="unit-header">
+        <button class="back-btn" id="gallery-back-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back to Units
+        </button>
+        <h2 class="unit-title" id="unit-title">School Name</h2>
+        <!-- Admin button injected here if authorized -->
+        <div id="unit-admin-actions"></div>
+      </div>
+      <div class="events-list" id="events-list">
+        <!-- Events injected by gallery.js -->
+      </div>
+    </div>
+  </main>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       ABOUT US VIEW — SPA section for About Content
+       ═══════════════════════════════════════════════════════════ -->
+  <main class="view-hidden about-view" id="about-view">
+    <div class="about-us-container">
+      <div class="about-us-header">
+        <h2 class="about-title">About NSS KIIT</h2>
+        <p class="about-subtitle">National Service Scheme — Not Me But You</p>
+      </div>
+
+      <div class="about-grid">
+        <!-- Motto, Symbol, Badge -->
+        <div class="about-card reveal-card">
+          <h3>The Motto</h3>
+          <p>The motto or watchword of the National Service Scheme is: <strong>"NOT ME BUT YOU"</strong>. This reflects the essence of democratic living and upholds the need for selfless service and appreciation of the other person's point of view and also to show consideration for fellow human beings. It underlines that the welfare of an individual is ultimately dependent on the welfare of society on the whole. Therefore, it should be the aim of the NSS to demonstrate this motto in its day-to-day programme.</p>
+        </div>
+
+        <div class="about-card reveal-card">
+          <h3>NSS Symbol</h3>
+          <div class="about-flex">
+            <img src="photos/nss-logo.webp" alt="NSS Logo" class="about-logo" />
+            <p>The symbol of National Service Scheme is based on the "Rath" wheel of Konark Sun Temple stated in Odisha. These giant wheels of the Sun Temple portray the cycle of creation, preservation and release, and signify the movement in life across time and space. The design of symbol, a simplified form of the Sun-chariot wheel primarily depicts movement. The wheel signifies the progressive cycle of life. It stands for the continuity as well as change and implies the continuous striving of NSS for social transformation and upliftment.</p>
+          </div>
+        </div>
+
+        <div class="about-card reveal-card">
+          <h3>NSS Badge</h3>
+          <div class="about-flex">
+            <img src="photos/nss-logo.webp" alt="NSS Badge" class="about-logo" />
+            <p>The NSS symbol is embossed on the NSS badge. The NSS volunteers wear it while undertaking any programme of community service. The Konark wheel in the symbol has eight bars which represent the 24 hours of the day. Hence, the badge reminds the wearer to be in readiness for service of the nation round the clock i.e. for 24 hours. The red colour in the badge indicates that the NSS volunteers are full of blood i.e. lively, active, energetic and full of high spirit. The navy blue colour indicates the cosmos of which the NSS is a tiny part, ready to contribute its share for the welfare of the humankind.</p>
+          </div>
+        </div>
+
+        <!-- Day and Song -->
+        <div class="about-card reveal-card">
+          <h3>NSS Day</h3>
+          <p>NSS was formally launched on 24th September, 1969, the birth centenary year of Mahatma Gandhi, the Father of the Nation. Therefore, 24th September is celebrated every year as NSS Day with appropriate programmes and activities.</p>
+        </div>
+
+        <div class="about-card reveal-card">
+          <h3>NSS Song</h3>
+          <p>During Silver Jubilee Year 1994 the NSS theme song has been composed. All NSS volunteers are expected to learn the theme song, which is given to them and sing the song during NSS programmes and celebrations.</p>
+          <a href="https://www.youtube.com/watch?v=11LC0tBIl4I" target="_blank" rel="noopener noreferrer" class="listen-btn">LISTEN</a>
+        </div>
+
+        <!-- Roles & Organization -->
+        <div class="about-card reveal-card full-width">
+          <h3>University Level Advisory Committee</h3>
+          <p>The NSS Advisory Committee at University Level will be an apex body as far as implementation of NSS at University Level is concerned. The Programme Coordinator will approach the University Advisory Committee for approval of NSS budget, covering NSS activities and establishment expenditure on NSS cell and also programme activities to be undertaken during the year.</p>
+        </div>
+
+        <div class="about-card reveal-card full-width">
+          <h3>Programme Coordinator</h3>
+          <p>The Programme Coordinator is the key functionary as far as NSS is concerned. Therefore, a dedicated and devoted Programme Coordinator can plan, execute and evaluate the NSS activities in a proper perspective. The Programme Coordinator, who is a senior teaching faculty, will execute all administrative and policy directives of the government, decisions of the State Advisory Committee and University Advisory Committee. The NSS programme will be prepared in the light of the guidelines issued by the Government of India.</p>
+        </div>
+
+        <div class="about-card reveal-card full-width">
+          <h3>Programme Officer</h3>
+          <p>The Programme Officer, who is a member of the teaching faculty, provides necessary leadership to the youth/NSS students. The teacher/NSS programme officer has the professional knowledge and skills. He/she is expected to be a role model of the values and the norms of the institution and the society as a whole. He/she is expected to provide necessary guidance to the students in developing their personality through community service. In fact the Programme Officer is a friend, philosopher and guide to the students in achieving this goal.</p>
+        </div>
+
+        <div class="about-card reveal-card full-width">
+          <h3>NSS Volunteer</h3>
+          <p>The NSS volunteer, student enrolled in the university is the main beneficiary of the programme by way of development of his/her perception about the community, his/her skill to perform certain jobs, and develop quality of a leader, organiser, and an administrator and development of his/her personality as a whole. Through NSS, he/she gets opportunities to see the community closely and thus gets an experience of human nature in relation to his/her environment. This is how the NSS programme aims to make NSS student youth better citizens through "Development of their personality through Community Service".</p>
+        </div>
+
+        <div class="about-card reveal-card full-width">
+          <h3>Community</h3>
+          <p>The community provides NSS volunteer the first-hand knowledge of living conditions of masses to the NSS volunteers and thus, the process of mutual learning starts. The interaction of community with students and teachers while on one hand enrich the personality of student volunteers and on the other hand help the community to improve its living conditions.</p>
+        </div>
+      </div>
+    </div>
   </main>
 
   <!-- ═══════════════════════════════════════════════════════════
@@ -229,6 +338,85 @@
         <span class="btn-spinner"></span>
       </button>
     </form>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       EVENT MODAL — Admin Add Event/Photos
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="modal" id="event-modal" role="dialog" aria-modal="true" aria-labelledby="event-modal-title">
+    <button class="modal-close" id="event-modal-close-btn" aria-label="Close event modal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <div class="modal-header">
+      <div class="modal-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="17 8 12 3 7 8"></polyline>
+          <line x1="12" y1="3" x2="12" y2="15"></line>
+        </svg>
+      </div>
+      <h2 class="modal-title" id="event-modal-title">Add Event & Photos</h2>
+      <p class="modal-subtitle">Share updates for your school</p>
+    </div>
+
+    <div class="form-message" id="event-form-message" role="alert"></div>
+
+    <form id="event-form" novalidate>
+      <div class="form-group">
+        <label class="form-label" for="event-title">Title</label>
+        <input class="form-input" type="text" id="event-title" name="title" placeholder="Event Title" required />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="event-date">Date</label>
+        <input class="form-input" type="date" id="event-date" name="date" required />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="event-summary">Summary</label>
+        <textarea class="form-input" id="event-summary" name="summary" rows="3" placeholder="Describe the event..." required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="event-photos">Photos (Up to 20)</label>
+        <input class="form-input" type="file" id="event-photos" name="photos" accept="image/jpeg, image/png, image/webp" multiple required />
+      </div>
+
+      <button class="form-submit" type="submit" id="event-submit">
+        <span class="btn-text">Upload</span>
+        <span class="btn-spinner"></span>
+      </button>
+    </form>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       LOGOUT CONFIRM MODAL — Custom UI for logout
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="modal" id="logout-modal" role="dialog" aria-modal="true" aria-labelledby="logout-modal-title">
+    <div class="modal-header" style="margin-bottom: 2rem;">
+      <div class="modal-icon" style="background: rgba(255, 59, 48, 0.1); color: #ff3b30;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+          <polyline points="16 17 21 12 16 7"></polyline>
+          <line x1="21" y1="12" x2="9" y2="12"></line>
+        </svg>
+      </div>
+      <h2 class="modal-title" id="logout-modal-title">Confirm Logout</h2>
+      <p class="modal-subtitle">Are you sure you want to sign out of the admin dashboard?</p>
+    </div>
+
+    <div style="display: flex; gap: 1rem;">
+      <button class="form-submit" id="logout-cancel-btn" style="background: transparent; color: var(--color-text); border: 1px solid rgba(0,0,0,0.1);">
+        Cancel
+      </button>
+      <button class="form-submit" id="logout-confirm-btn" style="background: #ff3b30;">
+        Log Out
+      </button>
+    </div>
   </div>
 
   <!-- ═══════════════════════════════════════════════════════════

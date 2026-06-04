@@ -27,6 +27,9 @@ function getElements() {
     userRole: document.getElementById('nav-user-role'),
     logoutBtn: document.getElementById('nav-logout-btn'),
     mobileLoginBtn: document.getElementById('mobile-login-btn'),
+    logoutModal: document.getElementById('logout-modal'),
+    logoutConfirmBtn: document.getElementById('logout-confirm-btn'),
+    logoutCancelBtn: document.getElementById('logout-cancel-btn'),
   };
 }
 
@@ -45,9 +48,10 @@ function openLoginModal() {
 }
 
 function closeLoginModal() {
-  const { backdrop, modal, form, formMessage, emailError, passwordError } = getElements();
+  const { backdrop, modal, form, formMessage, emailError, passwordError, logoutModal } = getElements();
   backdrop.classList.remove('open');
   modal.classList.remove('open');
+  if (logoutModal) logoutModal.classList.remove('open');
   document.body.classList.remove('modal-open');
 
   // Reset form
@@ -171,7 +175,24 @@ async function fetchMe() {
   }
 }
 
-async function logout() {
+function logout(e) {
+  if (e) e.preventDefault();
+  
+  const { backdrop, logoutModal } = getElements();
+  if (backdrop && logoutModal) {
+    backdrop.classList.add('open');
+    logoutModal.classList.add('open');
+    document.body.classList.add('modal-open');
+  }
+}
+
+async function executeLogout() {
+  const { logoutConfirmBtn } = getElements();
+  if (logoutConfirmBtn) {
+    logoutConfirmBtn.classList.add('loading');
+    logoutConfirmBtn.innerHTML = '<span class="btn-spinner" style="display: inline-block;"></span>';
+  }
+
   try {
     await fetch(`${API_BASE}/auth/logout`, {
       method: 'POST',
@@ -185,6 +206,8 @@ async function logout() {
   accessToken = null;
   currentUser = null;
   updateNavForLogout();
+  closeLoginModal(); // This will close the logout modal too since we added it to closeLoginModal
+  window.dispatchEvent(new CustomEvent('authChange', { detail: { user: null } }));
 }
 
 // ── UI Updates ─────────────────────────────────────────────────
@@ -235,6 +258,7 @@ async function handleLoginSubmit(e) {
     formMessage.textContent = `Welcome, ${data.user.name}!`;
 
     updateNavForLogin(data.user);
+    window.dispatchEvent(new CustomEvent('authChange', { detail: { user: data.user } }));
 
     // Close modal after a beat
     setTimeout(() => closeLoginModal(), 800);
@@ -269,6 +293,10 @@ function initAuth() {
 
   // Logout
   logoutBtn?.addEventListener('click', logout);
+  
+  const { logoutConfirmBtn, logoutCancelBtn } = getElements();
+  logoutConfirmBtn?.addEventListener('click', executeLogout);
+  logoutCancelBtn?.addEventListener('click', closeLoginModal);
 
   // Clear field errors on input
   const { emailInput, passwordInput } = getElements();
@@ -295,4 +323,12 @@ async function tryRestoreSession() {
   }
 }
 
-export { initAuth, openLoginModal, closeLoginModal };
+function getCurrentUser() {
+  return currentUser;
+}
+
+function getAccessToken() {
+  return accessToken;
+}
+
+export { initAuth, openLoginModal, closeLoginModal, getCurrentUser, getAccessToken };

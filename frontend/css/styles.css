@@ -360,6 +360,146 @@ body.loaded .hero-quotes {
 }
 
 /* ============================================================
+   ABOUT US VIEW  —  SPA section for About Content
+   ============================================================ */
+.about-view {
+  width: 100%;
+  min-height: 100vh;
+  padding: 12rem 5vw 8rem;
+  background: var(--color-bg);
+}
+
+.about-us-container {
+  width: 100%;
+  max-width: 120rem;
+  margin: 0 auto;
+}
+
+.about-us-header {
+  text-align: center;
+  margin-bottom: 6rem;
+}
+
+.about-us-header .about-title {
+  font-size: clamp(3rem, 4vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+
+.about-us-header .about-subtitle {
+  font-size: 1.6rem;
+  color: var(--color-text-muted);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(32rem, 1fr));
+  gap: 3rem;
+}
+
+.about-card {
+  background: var(--color-white);
+  border-radius: 2rem;
+  padding: 3rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--glass-border);
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+  display: flex;
+  flex-direction: column;
+}
+
+.about-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.about-card.full-width {
+  grid-column: 1 / -1;
+}
+
+.about-card h3 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 1.6rem;
+  letter-spacing: -0.02em;
+}
+
+.about-card p {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  text-align: justify;
+}
+
+.about-flex {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.about-logo {
+  width: 10rem;
+  height: auto;
+  border-radius: 50%;
+  flex-shrink: 0;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+}
+
+@media (max-width: 600px) {
+  .about-flex {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.listen-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+  padding: 1rem 2.4rem;
+  background-color: var(--color-success);
+  color: var(--color-white);
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: background-color 0.2s var(--ease-out), transform 0.2s var(--ease-out);
+  align-self: flex-start;
+  margin-top: 2rem;
+}
+
+.listen-btn:hover {
+  background-color: #2eb04e;
+  transform: scale(1.05);
+}
+
+/* Scroll Reveal Animations for Cards */
+.reveal-card {
+  opacity: 0;
+  transform: translateY(4rem);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+  will-change: transform, opacity;
+}
+
+.about-view.view-active .reveal-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered transition delays for cards */
+.about-view.view-active .reveal-card:nth-child(1) { transition-delay: 0.1s; }
+.about-view.view-active .reveal-card:nth-child(2) { transition-delay: 0.2s; }
+.about-view.view-active .reveal-card:nth-child(3) { transition-delay: 0.3s; }
+.about-view.view-active .reveal-card:nth-child(4) { transition-delay: 0.4s; }
+.about-view.view-active .reveal-card:nth-child(5) { transition-delay: 0.5s; }
+.about-view.view-active .reveal-card:nth-child(n+6) { transition-delay: 0.6s; }
+
+/* ============================================================
    NAVBAR  —  Augen.pro inspired glassmorphism
    ============================================================ */
 .navbar {
@@ -892,6 +1032,237 @@ body.loaded .navbar.navbar--hidden {
 /* Body locked while modal is open */
 body.modal-open {
   overflow: hidden;
+}
+
+/* ============================================================
+   SPA VIEW TRANSITIONS
+   ============================================================ */
+.view-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(2rem);
+  transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out), visibility 0s 0.5s;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.view-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+  transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+  position: relative; /* Takes up document flow */
+  z-index: var(--z-overlay);
+}
+
+/* Base state for scroller and views to handle positioning */
+#scroller {
+  transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out), visibility 0s 0.5s;
+}
+
+#scroller.view-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  position: absolute;
+}
+
+/* ============================================================
+   GALLERY VIEW (UNITS GRID)
+   ============================================================ */
+.gallery-view {
+  min-height: 100vh;
+  padding: 12rem 5vw 8rem;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+}
+
+.gallery-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.gallery-title {
+  font-family: 'Red Rose', serif;
+  font-size: clamp(3rem, 4vw, 4.5rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 4rem;
+  color: var(--color-text);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 3rem;
+}
+
+/* Augen.pro style card */
+.unit-card {
+  background: #EAEAEA;
+  border-radius: 1.2rem;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 4 / 3;
+  cursor: pointer;
+  transition: transform 0.4s var(--ease-out), background 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.unit-card:hover {
+  transform: translateY(-0.5rem);
+  background: #E0E0E0;
+}
+
+.unit-card h3 {
+  font-family: 'Red Rose', serif;
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+}
+
+.unit-card .read-more {
+  position: absolute;
+  bottom: 2rem;
+  left: 3rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+  transform: translateX(-1rem);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.unit-card:hover .read-more {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ============================================================
+   UNIT DETAIL VIEW (EVENTS)
+   ============================================================ */
+.unit-detail-view {
+  min-height: 100vh;
+  padding: 12rem 5vw 8rem;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+}
+
+.unit-detail-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.unit-header {
+  margin-bottom: 4rem;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--color-text-light);
+  cursor: pointer;
+  margin-bottom: 2rem;
+  transition: color 0.2s ease;
+}
+
+.back-btn svg {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+.back-btn:hover {
+  color: var(--color-text);
+}
+
+.unit-title {
+  font-family: 'Red Rose', serif;
+  font-size: clamp(3rem, 4vw, 4.5rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 2rem;
+}
+
+.btn-admin-action {
+  background: var(--color-text);
+  color: #fff;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  font-size: 1.3rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  margin-bottom: 2rem;
+}
+
+.btn-admin-action:hover {
+  transform: scale(1.05);
+}
+
+.events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+}
+
+.event-item {
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding-bottom: 6rem;
+}
+
+.event-date {
+  font-size: 1.3rem;
+  color: var(--color-text-light);
+  margin-bottom: 1rem;
+}
+
+.event-title {
+  font-family: 'Red Rose', serif;
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+.event-summary {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  max-width: 80rem;
+  margin-bottom: 3rem;
+}
+
+.event-photos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.event-photo {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 0.8rem;
 }
 
 /* ============================================================

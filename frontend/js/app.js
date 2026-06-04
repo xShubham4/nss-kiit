@@ -4,6 +4,7 @@
 
 import { initSpline } from './spline.js';
 import { initAuth } from './auth.js';
+import { initGallery } from './gallery.js';
 
 // ── Mobile Navigation ──────────────────────────────────────────
 function initMobileNav() {
@@ -141,6 +142,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Init text animations & mentors
   initScrollReveal();
   initMentorGallery();
+  
+  // Init Gallery SPA
+  initGallery();
 
   console.log('[NSS-KIIT] App initialized');
 });
